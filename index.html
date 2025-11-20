@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Srimathi Ravisankar | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #ff6b4a;
+      --accent-soft: rgba(255, 107, 74, 0.15);
+      --text: #f5f5f5;
+      --muted: #9ca3af;
+      --card: #111827;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-left: 20px;
+      color: var(--muted);
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease-out;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr);
+      gap: 24px;
+      padding: 32px 24px;
+      border-radius: 26px;
+      background: linear-gradient(
+          135deg,
+          rgba(255, 107, 74, 0.14),
+          transparent 40%
+        ),
+        radial-gradient(circle at bottom right, #1f2937, #020617);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at top left, #4b5563 0, transparent 60%);
+      opacity: 0.4;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #020617;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--muted);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      opacity: 0.9;
+    }
+
+    .hero-stat-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 16px;
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      padding-top: 12px;
+    }
+
+    .pill-stat {
+      font-size: 0.8rem;
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+    }
+
+    .pill-stat strong {
+      color: var(--text);
+    }
+
+    /* Sections */
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .section-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .card-pill {
+      font-size: 0.7rem;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      white-space: nowrap;
+    }
+
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card ul {
+      list-style: none;
+      margin-top: 6px;
+      font-size: 0.86rem;
+      color: #d1d5db;
+    }
+
+    .card ul li {
+      margin-bottom: 4px;
+    }
+
+    .card ul li::before {
+      content: "• ";
+      color: var(--accent);
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+
+    .skill-chip {
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+    }
+
+    .contact {
+      text-align: left;
+    }
+
+    .contact h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .contact p {
+      color: var(--muted);
+      margin-bottom: 10px;
+      max-width: 420px;
+    }
+
+    .contact a {
+      color: var(--accent);
+    }
+
+    footer {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 16px;
+      }
+      .hero {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">SRIMATHI · PORTFOLIO</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Research</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          <span>AI · Systems · Product</span>
+        </div>
+        <h1>
+          Srimathi <span>Ravisankar</span>
+        </h1>
+        <p class="hero-subtitle">
+          AI-focused Software Engineer &amp; M.S. Computer Science student at UW–Madison.
+          I build reliable backend systems, practical ML solutions, and human-centered experiences.
+        </p>
+
+        <div class="hero-tags">
+          <span class="tag">MS CS · UW–Madison</span>
+          <span class="tag">Ex-Barclays SDE</span>
+          <span class="tag">Computer Vision &amp; NLP</span>
+          <span class="tag">GenAI &amp; Foundation Models</span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn-primary" href="mailto:ravisankar2@wisc.edu">
+            Contact Me
+          </a>
+          <a class="btn-ghost" href="https://linkedin.com/in/srimathi-ravisankar" target="_blank">
+            LinkedIn
+          </a>
+          <a class="btn-ghost" href="https://leetcode.com/srimathivk" target="_blank">
+            LeetCode
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span>📍 Madison, WI</span>
+          <span>✉️ ravisankar2@wisc.edu</span>
+        </div>
+
+        <div class="hero-stat-bar">
+          <div class="pill-stat"><strong>3+ yrs</strong> industry experience</div>
+          <div class="pill-stat"><strong>Best Paper</strong> ICICC 2022</div>
+          <div class="pill-stat"><strong>Top 8</strong> AWS DeepRacer</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-header-row">
+        <h2 class="section-title"><span>01</span> · About</h2>
+      </div>
+      <p class="section-subtitle">
+        I enjoy working where scalable systems, machine learning, and real users meet.
+        Previously a Senior SDE at Barclays, now deep-diving into Computer Vision,
+        Foundation Models, and NLP at UW–Madison.
+      </p>
+    </section>
+
+    <section id="experience">
+      <div class="section-header-row">
+        <h2 class="section-title"><span>02</span> · Experience</h2>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Teaching Assistant · CS354</div>
+            <div class="card-pill">UW–Madison</div>
+          </div>
+          <div class="card-meta">Aug 2025 – Present · Madison, WI</div>
+          <ul>
+            <li>Guide students through C programming, memory management, and systems concepts.</li>
+            <li>Support debugging of heap allocators, cache simulators, and low-level bugs.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Senior Software Development Engineer</div>
+            <div class="card-pill">Barclays</div>
+          </div>
+          <div class="card-meta">Aug 2022 – Aug 2025 · India</div>
+          <ul>
+            <li>Built Spring Boot microservices for enriched transaction reporting for 30,000+ corporate customers.</li>
+            <li>Implemented asynchronous caching to reduce average processing latency by 41 seconds.</li>
+            <li>Led GitLab CI/CD migration and standardized API workflows.</li>
+            <li>Designed dashboards and UI components for Online Corporate Digital Banking (AngularJS).</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Data Science Intern</div>
+            <div class="card-pill">Samsung</div>
+          </div>
+          <div class="card-meta">Mar 2022 – Jul 2022 · India</div>
+          <ul>
+            <li>Developed a real-time payment dashboard for Samsung US Ecommerce (50,000+ daily transactions).</li>
+            <li>Integrated ELK Stack for log aggregation and exportable operational reports.</li>
+            <li>Implemented ML-based anomaly detection to cut incident detection time by 40%.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Summer Analyst</div>
+            <div class="card-pill">Citicorp</div>
+          </div>
+          <div class="card-meta">Apr 2021 – Jun 2021 · India</div>
+          <ul>
+            <li>Built a Lucene-backed REST API for real-time indexing and fuzzy search, improving retrieval by 60%.</li>
+            <li>Developed an Amazon Lex chatbot to automate shareholder investment queries and FAQs.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-header-row">
+        <h2 class="section-title"><span>03</span> · Selected Projects</h2>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Emotion Recognition System</div>
+            <div class="card-pill">Research</div>
+          </div>
+          <div class="card-meta">Prof. Yin Li · Sept 2025</div>
+          <ul>
+            <li>Built a real-time multi-modal emotion recognition system from speech.</li>
+            <li>Combined acoustic features (MFCCs, spectral roll-off) with BERT / Word2Vec embeddings.</li>
+            <li>Designed a CNN + attention-based fusion model to detect early mental health signals.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Voice Assisted System for Visually Challenged</div>
+            <div class="card-pill">Accessibility</div>
+          </div>
+          <div class="card-meta">Jun 2020 – Oct 2020</div>
+          <ul>
+            <li>Developed a mobile app to classify groceries using ResNet and detect expiry via VGG-16 + OCR.</li>
+            <li>Improved accessibility with auditory cues and vibration-based feedback for guidance and errors.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Customer Complaint Resolution · GenAI</div>
+            <div class="card-pill">Barclays Hackathon</div>
+          </div>
+          <div class="card-meta">Nov 2024</div>
+          <ul>
+            <li>Used BERT to classify and prioritize customer complaints by sentiment and severity.</li>
+            <li>Flagged high-priority issues for escalation to improve resolution time.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Smart India Hackathon App</div>
+            <div class="card-pill">Top 10 Finalist</div>
+          </div>
+          <div class="card-meta">Feb 2020 – Jun 2020</div>
+          <ul>
+            <li>Built a mobile app for crop recommendations and predictive pricing.</li>
+            <li>Used weather and demand data to help farmers sell at better rates.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="section-header-row">
+        <h2 class="section-title"><span>04</span> · Publications &amp; Awards</h2>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Flexible Demand Forecasting in Intelligent Food Supply Chain Management</div>
+            <div class="card-pill">Best Paper</div>
+          </div>
+          <div class="card-meta">ICICC 2022 · DOI: 10.2139/ssrn.4119151</div>
+          <ul>
+            <li>Proposed a demand forecasting algorithm using real-time news feeds as exogenous variables in SARIMA.</li>
+            <li>Focused on predicting demand shocks during COVID-19 for restaurant supply chains.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Traffic Control &amp; Management System for Smart City Using Geo-Social Networks</div>
+            <div class="card-pill">Journal</div>
+          </div>
+          <div class="card-meta">IJSR 2022 · DOI: 10.21275/SR221018164349</div>
+          <ul>
+            <li>Built an ST-ResNet model to capture spatial and temporal dependencies for traffic prediction.</li>
+            <li>Incorporated weather, holidays, and school schedules to enhance real-world accuracy.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-header-row">
+        <h2 class="section-title"><span>05</span> · Skills</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title" style="margin-bottom: 8px;">Core Stack</div>
+          <div class="skills-list">
+            <span class="skill-chip">Java</span>
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">C++</span>
+            <span class="skill-chip">Spring Boot</span>
+            <span class="skill-chip">Node.js</span>
+            <span class="skill-chip">Express</span>
+            <span class="skill-chip">MySQL</span>
+            <span class="skill-chip">PostgreSQL</span>
+            <span class="skill-chip">MongoDB</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom: 8px;">AI, Data &amp; Tools</div>
+          <div class="skills-list">
+            <span class="skill-chip">PyTorch</span>
+            <span class="skill-chip">TensorFlow</span>
+            <span class="skill-chip">Keras</span>
+            <span class="skill-chip">BERT</span>
+            <span class="skill-chip">Kafka</span>
+            <span class="skill-chip">RabbitMQ</span>
+            <span class="skill-chip">ElasticSearch</span>
+            <span class="skill-chip">Redis</span>
+            <span class="skill-chip">AWS</span>
+            <span class="skill-chip">Docker</span>
+            <span class="skill-chip">Linux</span>
+            <span class="skill-chip">Figma</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-header-row">
+        <h2 class="section-title"><span>06</span> · Contact</h2>
+      </div>
+      <div class="contact card">
+        <h3>Let’s build something impactful.</h3>
+        <p>
+          Open to software engineering, ML, and research roles where I can combine
+          systems thinking with modern AI.
+        </p>
+        <p>
+          ✉️ <a href="mailto:ravisankar2@wisc.edu">ravisankar2@wisc.edu</a><br />
+          🔗 <a href="https://linkedin.com/in/srimathi-ravisankar" target="_blank">LinkedIn</a><br />
+          🧩 <a href="https://leetcode.com/srimathivk" target="_blank">LeetCode</a>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2025 · Srimathi Ravisankar</span>
+      <span>Built with HTML &amp; CSS</span>
+    </footer>
+  </div>
+</body>
+</html>
