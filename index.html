@@ -312,15 +312,19 @@
     }
 
     .card-pill {
-      font-size: 0.7rem;
-      padding: 3px 9px;
-      border-radius: var(--radius-pill);
-      background: var(--accent-soft);
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      white-space: nowrap;
-    }
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;        /* keeps it on one line */
+  width: fit-content;         /* prevents stretching */
+  max-width: 120px;           /* stops ugly long ovals */
+  overflow: hidden;           /* hide overflow */
+  text-overflow: ellipsis;    /* if too long, add ... */
+}
 
     .card-meta {
       font-size: 0.78rem;
